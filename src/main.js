@@ -4,18 +4,33 @@ import store from './store'
 import { router, routerList } from './router'
 import { mapActions } from 'vuex'
 import '@src/styl/flex.styl'
-
+import hljs from 'highlight.js' //导入代码高亮文件
+import 'highlight.js/styles/github.css'  //导入代码高亮样式
 Vue.config.productionTip = false
+
+import CodeView from '@base/code-view'
+Vue.component(CodeView.name, CodeView)
+//自定义一个代码高亮指令
+Vue.directive('highlight',function (el) {
+  let highlight = el.querySelectorAll('code');
+  highlight.forEach((block)=>{
+      hljs.highlightBlock(block)
+  })
+})
 
 import { 
   Message,
   Table,
   TableColumn,
+  Button
 } from 'element-ui';
 
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Button)
 Vue.prototype.$message = Message
+Vue.prototype.ns = window['ns']
+
 
 
 // 查找一层路由

@@ -10,8 +10,14 @@ export const routerList = [
   {
     path: '/water-fall',
     name: '瀑布流',
-    component: () => import(/* webpackChunkName: "water-fall" */'@components/water-fall.vue')
+    component: () => import(/* webpackChunkName: "water-fall" */'@components/water-fall/water-fall.vue')
   },
+  {
+    path: '/transform-code',
+    name: '代码转化',
+    component: () => import(/* webpackChunkName: "water-fall" */'@components/transform-code.vue')
+  },
+
   
 ];
 
