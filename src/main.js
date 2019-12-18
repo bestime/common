@@ -5,11 +5,16 @@ import { router, routerList } from './router'
 import { mapActions } from 'vuex'
 import '@src/styl/flex.styl'
 import hljs from 'highlight.js' //导入代码高亮文件
-import 'highlight.js/styles/github.css'  //导入代码高亮样式
+import 'highlight.js/styles/atom-one-dark.css'  //导入代码高亮样式
 Vue.config.productionTip = false
+
+import '$vue'
 
 import CodeView from '@base/code-view'
 Vue.component(CodeView.name, CodeView)
+import Example from '@base/example'
+Vue.component(Example.name, Example)
+
 //自定义一个代码高亮指令
 Vue.directive('highlight',function (el) {
   let highlight = el.querySelectorAll('code');
@@ -17,6 +22,11 @@ Vue.directive('highlight',function (el) {
       hljs.highlightBlock(block)
   })
 })
+
+// 是否是当前路由
+Vue.prototype.isActiveRouter = function (name) {
+  return store.getters.currentRouteName.some(c => c===name)
+}
 
 import { 
   Message,

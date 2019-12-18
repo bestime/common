@@ -16,17 +16,6 @@
     font-size 1em
   &.default
     background #b9b9b9
-    border #676767 solid 1px
-  .bw489wew
-    position absolute
-    left 0
-    top 0
-    right 0
-    bottom 0
-    z-index 5
-    display flex
-    align-items center
-    justify-content center
 </style>
 
 <template>
@@ -44,22 +33,16 @@
       @error="onError"
       @load="onLoad"
       v-show="!showDefault"   
-      itemprop="thumbnail" alt="Image description"   
+      itemprop="thumbnail"
+      alt="Image description"   
     />
-    
     <div v-show="showDefault" class="vbt-icon">&#xe99d;</div>
-    <div v-show="doing" class="bw489wew">
-      <Loading/>
-    </div>
   </div>  
 </template>
 
 <script>
-
-import Loading from './Loading.vue'
 export default {
   name: 'image-vbt',
-  components: { Loading },
   props: {
     // 图片地址
     src: null,
@@ -76,7 +59,6 @@ export default {
   data () {
     return {
       showDefault: false,
-      doing: false,
       idx: -1,
       useSrc: ''
     }
@@ -86,8 +68,7 @@ export default {
     if(!this.src) {
       this.getDefaultImage()
     } else {
-      this.doing = true
-      this.useSrc = this.src
+    this.useSrc = this.src
     }
   },
 
@@ -98,7 +79,6 @@ export default {
 
     onLoad () {
       this.showDefault = false
-      this.doing = false
       this.$nextTick(() => {
         this.$emit('on-load', this.useSrc)
       })
@@ -107,7 +87,6 @@ export default {
     getDefaultImage (callback) {
       if(!this.list.length || this.idx>=this.list.length) {
         this.showDefault = true
-        this.doing= false
       } else {
         let src = this.list[++this.idx]
         if( src ) {
@@ -121,7 +100,6 @@ export default {
       if(newSrc) {
         this.idx = -1
         this.showDefault = false
-        this.doing = true
         this.useSrc = newSrc
       }
     }

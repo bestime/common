@@ -13,12 +13,15 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "water-fall" */'@components/water-fall/water-fall.vue')
   },
   {
+    path: '/eg-checkbox',
+    name: 'checkbox',
+    component: () => import(/* webpackChunkName: "eg-checkbox" */'@components/eg-checkbox/index.vue')
+  },
+  {
     path: '/transform-code',
     name: '代码转化',
-    component: () => import(/* webpackChunkName: "water-fall" */'@components/transform-code.vue')
-  },
-
-  
+    component: () => import(/* webpackChunkName: "transform-code" */'@components/transform-code.vue')
+  }
 ];
 
 export const router = new Router({

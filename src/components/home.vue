@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { routerList } from '@src/router.js'
+
 import treeRouterList from './tree-router-list'
 export default {
   components: {
@@ -37,7 +37,6 @@ export default {
   },
   data () {
     return {
-      routerList,
       vueList: getVueList()
     }
   },

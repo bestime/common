@@ -128,7 +128,6 @@ export default {
     },
 
     show () {
-      
       switch (this.direction) {
         case 'right':
           this.trangleStyle = {

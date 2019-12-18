@@ -10,30 +10,31 @@
 
 <template>
   <div class="eg-water-fall-wrapper">
-    <code-view type="html" :content="demoCode"/>
-    <div>
-      <h2 class="apititle">waterfall-wrapper 参数</h2>
-      <el-table
-        :data="apiList"
-        border
-        style="width: 100%">
-        <el-table-column
-          prop="key"
-          width="150px"
-          label="参数">
-        </el-table-column>
-        <el-table-column
-          prop="type"
-          width="80px"
-          label="类型">
-        </el-table-column>
-        <el-table-column
-          prop="desc"
-          label="描述">
-        </el-table-column>
-      </el-table>
-    </div>
-    <eg01/>
+    <example title="瀑布流">
+      <eg01 slot="demo"/>
+      <code-view slot="code" type="html" :content="demoCode"/>
+    </example>
+    
+    <h2 class="apititle">waterfall-wrapper 参数</h2>
+    <el-table
+      :data="apiList"
+      border>
+      <el-table-column
+        prop="key"
+        width="150px"
+        label="参数">
+      </el-table-column>
+      <el-table-column
+        prop="type"
+        width="80px"
+        label="类型">
+      </el-table-column>
+      <el-table-column
+        prop="desc"
+        label="描述">
+      </el-table-column>
+    </el-table>
+    
   </div>
 </template>
 
