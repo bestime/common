@@ -8,6 +8,11 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "home" */'@components/home.vue')
   },
   {
+    path: '/js',
+    name: 'js方法',
+    component: () => import(/* webpackChunkName: "water-fall" */'@components/js-eg/index.vue')
+  },
+  {
     path: '/water-fall',
     name: '瀑布流',
     component: () => import(/* webpackChunkName: "water-fall" */'@components/water-fall/water-fall.vue')

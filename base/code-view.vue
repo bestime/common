@@ -8,7 +8,7 @@
   src: url('../src/fonts/code2.woff');
 }
 pre, code
-  font-family: 'code2', 'code';
+  font-family: 'code2', 'code', 'monospace';
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;

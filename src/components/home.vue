@@ -50,36 +50,7 @@ export default {
 
 function getVueList () {
   return [
-    {
-      name: 'waterfall',
-      path: `import Waterfall from 'jcy-common/vue/waterfall'`,
-      routeName: '瀑布流',
-      desc: '瀑布流容器'
-    },
-    {
-      name: 'waterfall-item',
-      path: `import WaterfallItem from 'jcy-common/vue/waterfall-item'`,
-      routeName: '瀑布流',
-      desc: '瀑布流子项'
-    },
-    {
-      name: 'Switch',
-      path: `import Switch from 'jcy-common/vue/Switch'`,
-      routeName: '开关',
-      desc: '开关'
-    },
-    {
-      name: 'Image',
-      path: `import Image from 'jcy-common/vue/Image'`,
-      routeName: '图片',
-      desc: '处理错误图片'
-    },
-    {
-      name: 'Drawer',
-      path: `Drawer Drawer from 'jcy-common/vue/Drawer'`,
-      routeName: '抽屉',
-      desc: '可作弹出层，上，右，下，左，中'
-    },
+    
   ]
 }
 

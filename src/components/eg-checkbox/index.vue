@@ -42,7 +42,7 @@ function getSingleCode () {
 <\/template>
 
 <script>
-import CheckBoxItem from '$vue/checkbox-item'
+import CheckBoxItem from 'jcy-common/vue/checkbox-item'
 export default {
   components: {
     'checkbox-item': CheckBoxItem
@@ -62,12 +62,13 @@ function getGroupCode () {
   return `
 <template>
   <div>
-    <checkbox-item v-model="needQuanxuan">显示全选<\/checkbox-item>
+    <checkbox-item v-model="needQuanxuan">显示全选 {{area}}<\/checkbox-item>
     <checkbox-group v-model="area" :all="needQuanxuan" style="margin-top:10px;">
       <checkbox-item
         v-model="item.checked"
         :key="item.key"
         :name="item.key"
+        :disabled="item.disabled"
         v-for="item in list">
         {{item.label}}
       <\/checkbox-item>
@@ -76,8 +77,8 @@ function getGroupCode () {
 <\/template>
 
 <script>
-import CheckBoxItem from '$vue/checkbox-item'
-import CheckBoxGroup from '$vue/checkbox-group'
+import CheckBoxItem from 'jcy-common/vue/checkbox-item'
+import CheckBoxGroup from 'jcy-common/vue/checkbox-group'
 export default {
   components: {
     'checkbox-item': CheckBoxItem,
@@ -86,12 +87,12 @@ export default {
   data () {
     return {
       needQuanxuan: false,
-      area: ['a', 'd'],
+      area: ['d'],
       list: [
-        { checked: false, key: 'a', label: '重庆' },
-        { checked: false, key: 'b', label: '四川' },
-        { checked: false, key: 'c', label: '北京' },
-        { checked: false, key: 'd', label: '广州' }
+        { checked: true, key: 'a', label: 'javascript', disabled: true},
+        { checked: true, key: 'b', label: 'php', disabled: true},
+        { checked: false, key: 'c', label: 'nodejs' },
+        { checked: false, key: 'd', label: 'java' }
       ]
     }
   }

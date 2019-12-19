@@ -56,9 +56,6 @@ $activeColor = #409eff
       background #f9f9f9
     .custom
       color $disabledColor
-
-  
-      
 </style>
 
 <template>

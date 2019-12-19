@@ -8,7 +8,9 @@ import hljs from 'highlight.js' //导入代码高亮文件
 import 'highlight.js/styles/atom-one-dark.css'  //导入代码高亮样式
 Vue.config.productionTip = false
 
-import '$vue'
+import 'jcy-common/vue'
+
+import { hasProp } from 'jcy-common/vue/vue-tool'
 
 import CodeView from '@base/code-view'
 Vue.component(CodeView.name, CodeView)
@@ -40,6 +42,7 @@ Vue.use(TableColumn)
 Vue.use(Button)
 Vue.prototype.$message = Message
 Vue.prototype.ns = window['ns']
+Vue.prototype.hasProp = hasProp
 
 
 

@@ -38,20 +38,36 @@ $borderRadius = 5px
     &:hover
       color rgba(64, 158, 255, 1)
       background #f9f9f9
+  .code-desc
+    padding 10px 20px
+    li
+      font-size 14px
+      color #636363
+      margin 5px 0
+      list-style inside
+      b
+        background #fff5f5
+        color #fa795e
+        font-weight normal
+        font-size 12px
+        display inline-block
+        padding 2px 7px
+        border-radius 3px
 </style>
 
 <template>
   <div :title="null" class="example-wrapper">
     <div class="title">{{ title }}</div>
-    <div class="ex-content">
+    <div class="ex-content" v-if="$slots.demo">
       <slot name="demo"/>
-      <!-- <div class="tmk"></div> -->
-      
     </div>
-    <template v-if="showCode">
+    <div class="ex-desc" v-if="$slots.desc">
+      <slot name="desc"/>
+    </div>
+    <template v-if="$slots.code && showCode">
       <slot name="code" />
     </template>
-    <div @click="showCode = !showCode" class="show-code">
+    <div v-if="$slots.code" @click="showCode = !showCode" class="show-code">
       <p>{{ showCode ? '隐藏代码' : '查看代码' }}</p>
     </div>
   </div>
@@ -61,12 +77,16 @@ $borderRadius = 5px
 export default {
   name: 'example',
   props: {
-    title: String
+    title: String,
+    openCode: Boolean
   },
   data() {
     return {
       showCode: false
     }
+  },
+  beforeMount () {
+    this.showCode = this.hasProp(this.openCode)
   }
 }
 </script>

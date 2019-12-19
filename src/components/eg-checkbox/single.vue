@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import CheckBoxItem from '$vue/checkbox-item'
+import CheckBoxItem from 'jcy-common/vue/checkbox-item'
 export default {
   components: {
     'checkbox-item': CheckBoxItem

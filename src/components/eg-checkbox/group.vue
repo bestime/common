@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import CheckBoxItem from '$vue/checkbox-item'
-import CheckBoxGroup from '$vue/checkbox-group'
+import CheckBoxItem from 'jcy-common/vue/checkbox-item'
+import CheckBoxGroup from 'jcy-common/vue/checkbox-group'
 export default {
   components: {
     'checkbox-item': CheckBoxItem,
@@ -25,12 +25,12 @@ export default {
   data () {
     return {
       needQuanxuan: false,
-      area: ['a', 'b', 'c'],
+      area: ['d'],
       list: [
-        { checked: true, key: 'a', label: '重庆', disabled: true},
-        { checked: true, key: 'b', label: '四川', disabled: true},
-        { checked: true, key: 'c', label: '北京' },
-        { checked: false, key: 'd', label: '广州' }
+        { checked: true, key: 'a', label: 'javascript', disabled: true},
+        { checked: true, key: 'b', label: 'php', disabled: true},
+        { checked: false, key: 'c', label: 'nodejs' },
+        { checked: false, key: 'd', label: 'java' }
       ]
     }
   }

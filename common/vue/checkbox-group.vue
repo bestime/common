@@ -30,13 +30,15 @@ export default {
   components: {
     'checkbox-item': CheckBoxItem
   },
+
   props: {
     value: Array,
     all: Boolean
   },
+
   data () {
     return {
-      isAll: false
+      isAll: true
     }
   },
 
@@ -59,13 +61,14 @@ export default {
     },
 
     onChildLoad (oItem) {
-      let name, isFind;
+      let name, isFind, checked = true;
       for(let a=0; a < this.value.length; a++) {
         name = this.value[a]
         if(name === oItem.name) {
           isFind = true
           if(oItem.disabled) {
             if(!oItem.value) {
+              checked = false
               this.value.splice(a, 1)
             }
           } else {
@@ -78,14 +81,14 @@ export default {
         if(oItem.disabled && oItem.value) {
           this.value.push(oItem.name)
         } else {
+          checked = false
           oItem.update(false)
         }
       }
-
-
-      
+      if(this.isAll === true && !checked) {
+        this.isAll = checked
+      }
     },
-
     refreshChild () {
       const vChilds = findComponentsDownward(this, 'checkbox-item-vbt')
       let isAll = true
@@ -104,7 +107,6 @@ export default {
       })
       this.isAll = isAll
     },
-
     checkAll () {
       const toVal = !this.isAll
       const list = []
@@ -112,7 +114,6 @@ export default {
       vChilds.forEach(item => {
         // 有 name表示为 group 中的选项
         if(typeof item.name !== 'undefined') {
-          console.log('list', item.name, item.value)
           if(item.disabled) {
             if(item.value) {
               list.push(item.name)
@@ -125,7 +126,6 @@ export default {
       this.$emit('input', list)
     }
   },
-
   watch: {
     value () {
       this.refreshChild()

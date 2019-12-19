@@ -1,4 +1,8 @@
 <style lang="stylus" rel="stylesheet/stylus">
+*
+  margin 0
+  padding 0
+  list-style none
 .app-wrapper
   position absolute
   left 0

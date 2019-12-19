@@ -107,9 +107,9 @@ function getDemoCode () {
 <\/template>
 
 <script>
-import WaterFall from '$vue/waterfall'
-import WaterFallItem from '$vue/waterfall-item'
-import getRandom from '$js/getRandom'
+import WaterFall from 'jcy-common/vue/waterfall'
+import WaterFallItem from 'jcy-common/vue/waterfall-item'
+import getRandom from 'jcy-common/js/split/getRandom'
 export default {
   components: {
     'waterfall-wrapper': WaterFall,

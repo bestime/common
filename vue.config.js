@@ -41,6 +41,5 @@ function GET_chainWebpack (config) {
 											.set('@common', resolve('common'))
 											.set('@components', resolve('src/components'))
 											.set('@base', resolve('base'))
-											.set('$js', resolve('common/js/split'))
-											.set('$vue', resolve('common/vue'))
+											.set('jcy-common', resolve('common'))
 }
