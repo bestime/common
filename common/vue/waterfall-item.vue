@@ -25,6 +25,9 @@ import { findComponentUpward } from './vue-tool'
 const NAME = 'waterfall-item'
 export default {
   name: NAME,
+  props: {
+    index: Number
+  },
   data () {
     return {
       father: findComponentUpward(this, 'waterfall-wrapper'),

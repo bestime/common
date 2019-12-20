@@ -75,6 +75,7 @@ export default {
         this.THFUNC = throttle({
           handle: () => {
             const list = findComponentsDownward(this, 'waterfall-item')
+            list.sort((a, b) => a.index > b.index ? 1 : -1)            
             if(!list.length) return;
             clearInterval(this.timer)
             this.timer = setInterval(() => {

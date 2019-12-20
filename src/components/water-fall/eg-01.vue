@@ -23,7 +23,7 @@
 
 <template>
   <waterfall-wrapper :spaceVertical="5" :spaceHorizontal="5">
-    <waterfall-item v-for="item in list" :key="item.id">
+    <waterfall-item :index="index" v-for="(item, index) in list" :key="item.id">
       <div class="flex_column_center_center wat-pier" :style="{height: `${item.height}px`}">
         <span class="cid">{{ item.id }}</span>
         <span class="cheight">高{{ item.height }}</span>
