@@ -1,3 +1,5 @@
+
+
 <style lang="stylus" rel="stylesheet/stylus">
 .vbt-water-fall
   position relative
@@ -35,7 +37,8 @@ export default {
     return {
       timer: null,
       height: 0,
-      maxWidth: 0
+      maxWidth: 0,
+      childNumber: 0,
     }
   },
 
@@ -74,17 +77,20 @@ export default {
         let hMap; // 每一列高度总和统计
         this.THFUNC = throttle({
           handle: () => {
-            const list = findComponentsDownward(this, 'waterfall-item')
-            list.sort((a, b) => a.index > b.index ? 1 : -1)            
+            let list = findComponentsDownward(this, 'waterfall-item')
             if(!list.length) return;
+            list.sort((a, b) => a.index > b.index ? 1 : -1)
             clearInterval(this.timer)
             this.timer = setInterval(() => {
+              list = findComponentsDownward(this, 'waterfall-item')
+              list.sort((a, b) => a.index > b.index ? 1 : -1)    
               maxWidth = this.getWidth()
-              if(maxWidth!==this.maxWidth) {
+              if((this.childNumber!==list.length) || (maxWidth!==this.maxWidth)) {
+                this.childNumber = list.length
                 this.maxWidth = maxWidth
                 this.onChildUpdate()
               }
-            }, 60)
+            }, 100)
             try { perWidth = list[0].$refs.el.offsetWidth } catch (e) { return; }
             hMap = {}
             x = 0
@@ -96,10 +102,10 @@ export default {
             } else {
               justify = 0
             }
+            if(list.length===1) {
+              justify = 0
+            }
             list.forEach((item, index) => {
-              if(index === 0) {
-                justify = 0
-              }
               if(index < maxNum) {
                 x = index
                 y = this.spaceVertical
@@ -133,8 +139,6 @@ function findMinNumberFromJson (obj) {
     if(typeof res === 'undefined') {
       res = key
     }
-
-    
     
     item = _Number(obj[key])
     if(typeof min=== 'undefined' || item < min) {

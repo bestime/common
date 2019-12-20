@@ -72,6 +72,7 @@ function getApiList () {
 
 function getDemoCode () {
   return `
+// 由于context.$children 不是按顺序获取的 waterfall-item 
 <style lang="stylus" rel="stylesheet/stylus">
 .wat-pier
   width 100px
