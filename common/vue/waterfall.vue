@@ -97,6 +97,9 @@ export default {
               justify = 0
             }
             list.forEach((item, index) => {
+              if(index === 0) {
+                justify = 0
+              }
               if(index < maxNum) {
                 x = index
                 y = this.spaceVertical
