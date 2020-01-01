@@ -18,7 +18,7 @@ pre, code
 </style>
 
 <template>
-<pre v-if="content" v-highlight><code :class="type">{{content.trim()}}</code></pre>
+<pre v-if="content" v-highlight><code :class="type">{{ns.trim(content)}}</code></pre>
 </template>
 
 <script>

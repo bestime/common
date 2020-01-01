@@ -1,106 +1,69 @@
 <style lang="stylus" rel="stylesheet/stylus">
+.dop_right-enter-active, .dop_right-leave-active
+  transition 0.15s ease-out
+.dop_right-enter, .dop_right-leave-to
+  opacity 0
+  transform translateX(100px)
+
+.dop_left-enter-active, .dop_left-leave-active
+  transition 0.15s ease-out
+.dop_left-enter, .dop_left-leave-to
+  opacity 0
+  transform translateX(-100px)
+
+.dop_bottom-enter-active, .dop_bottom-leave-active
+  transition 0.15s ease-out
+.dop_bottom-enter, .dop_bottom-leave-to
+  opacity 0
+  transform translateY(100px)
+
+.dop_center-enter-active
+  transition 0.15s cubic-bezier(0.245, 0.890, 0.175, 1.210)
+.dop_center-leave-active
+  transition 0.15s cubic-bezier(0.850, -1.1, 0.540, 1.650)
+  
+.dop_center-enter, .dop_center-leave-to
+  opacity 0
+  transform scale(0.7)
+
+
+.dop_top-enter-active, .dop_top-leave-active
+  transition 0.15s ease-out
+.dop_top-enter, .dop_top-leave-to
+  opacity 0
+  transform translateY(-100px)
+
+.mkp85-enter-active, .mkp85-leave-active
+  transition 0.2s ease-out
+.mkp85-enter, .mkp85-leave-to
+  opacity 0
+
 .drawer-vbt
   position fixed
   left 0
   right 0
   bottom 0
   top 0
-  display none
-  ::-webkit-scrollbar
-    width 7px
-    height 7px
-    position fixed
-    left 0
-    top 0
-  ::-webkit-scrollbar-thumb
-    border-radius 0px
-    background rgba(0,0,0,0.05) !important
-    border rgba(0,0,0,0.1) solid 1px !important
-    position absolute
-    right -10px !important
-    border-radius 10px !important
-  ::-webkit-scrollbar-track 
-    background rgba(255,255,255,1) !important
-  &.opened
-    display flex
+  .drawer-body
+    flex 1
+    position relative
+    overflow auto
+    overflow-x hidden
   .drawer-content
     position absolute
-    transition 0.2s ease-out
     -webkit-overflow-scrolling touch
     box-shadow 0 0 20px rgba(0,0,0,0.2)
     display flex
     flex-direction column
-  &.dir-bottom
-    .drawer-content
-      right 0
-      top 15%
-      bottom 0
-      left 0
-      background #fff
-      transform translateY(100%)
-    &.auto-width
-      .drawer-content
-        left auto
-  &.dir-right
-    .drawer-content
-      right 0
-      top 0
-      bottom 0
-      left 15%
-      background #fff
-      transform translateX(100%)
-    &.auto-width
-      .drawer-content
-        left auto
-  &.dir-left
-    .drawer-content
-      left 0
-      top 0
-      bottom 0
-      right 15%
-      background #fff
-      transform translateX(-100%)
-    &.auto-width
-      .drawer-content
-        right auto
-  &.dir-center
-    align-items center
-    justify-content center
-    .drawer-content
-      transition 0.2s cubic-bezier(0.245, 0.890, 0.175, 1.210)
-      position relative
-      z-index 20
-      display inline-flex
-      opacity 0
-      transform scale(0.7)
-      max-height 80%
-      box-shadow 0 0 20px rgba(0,0,0,0.5)
+    background #fff
   .drawer-bg
     position absolute
     left 0
     right 0
     bottom 0
     top 0
-    background rgba(0,0,0,0.3)
-    opacity 0
-    transition 0.2s
-  &.active
-    .drawer-bg
-      opacity 1
-    &.dir-right
-      .drawer-content
-        transform translateX(0)
-    &.dir-bottom
-      .drawer-content
-        transform translateY(0)
-    &.dir-left
-      .drawer-content
-        transform translateX(0)
-    &.dir-center
-      .drawer-content
-        transform scale(1)
-        opacity 1
-  .w154
+    background rgba(0,0,0,0.3)  
+  .d-title
     display flex
     align-items center
     justify-content space-between
@@ -110,40 +73,90 @@
     background #fff
     border-bottom #f9f9f9 solid 1px
     user-select none
-  .bw74
+  .d-back
     width 26px
     height 26px
     display flex
     align-items center
     justify-content center
-    transition 0.2s
     cursor pointer
     font-size 20px
     &:hover
       background #f9f9f9
-    &:active
-      background #f2f2f2
-  .drawer-body
-    flex 1
-    position relative
-    overflow auto
-    overflow-x hidden
+  &.right
+    .drawer-content
+      right 0
+      top 0
+      bottom 0
+      left auto
+  &.left
+    .d-back
+      transform rotate(-180deg)
+    .drawer-content
+      right auto
+      top 0
+      bottom 0
+      left 0
+  &.bottom
+    .d-back
+      transform rotate(90deg)
+    .drawer-content
+      right 0
+      top auto
+      bottom 0
+      left 0
+  &.top
+    .d-back
+      transform rotate(-90deg)
+    .drawer-content
+      right 0
+      top 0
+      bottom auto
+      left 0
+  &.center
+    display flex
+    align-items center
+    justify-content center
+    .drawer-content
+      position relative
+      max-height 80%
+      max-width 80%
+  
 </style>
 
 <template>
-  <div :title="null" ref="wrapper" class="drawer-vbt" :class="getClass()" :style="getStyle">
-    <div class="drawer-bg" @click="mkClose"></div>
-    <div class="drawer-content" :class="contentClass" :style="{'width': width, 'height': height}">
-      <div class="w154" v-if="title">
-        <div>{{ title }}</div>
-        <div class="bw74" @click="close()">
-          <i class="vbt-icon">&#xe603;</i>
+  <div
+    v-show="exist"
+    :title="null"
+    ref="wrapper"
+    class="drawer-vbt"
+    :class="direction"
+    :style="getStyle"
+  >
+    <transition name="mkp85">
+      <div v-show="open" class="drawer-bg" @click="mkClose"></div>
+    </transition>
+    <transition :name="`dop_${direction}`">
+      <div
+        v-show="open"
+        class="drawer-content"
+        :class="contentClass"
+        :style="{
+          'width': (width || direction !== 'center') ? width : 'auto',
+          'height': (height || direction !== 'center') ? height : 'auto'
+        }"
+      >
+        <div class="d-title" v-if="title">
+          <div>{{ title }}</div>
+          <div class="d-back" @click="close()">
+            <i class="vbt-icon">{{ direction=='center' ? '&#xe603;' : '&#xe63b;' }}</i>
+          </div>
         </div>
-      </div>
-      <div class="drawer-body">
-        <slot/>
-      </div>
-    </div> 
+        <div class="drawer-body">
+          <slot/>
+        </div>
+      </div> 
+    </transition>
   </div>  
 </template>
 
@@ -151,12 +164,29 @@
 import getConfig from '../js/split/getConfig'
 import setConfig from '../js/split/setConfig'
 import _Number from '../js/split/_Number'
+import removeElement from '../js/split/removeElement'
+import { hasProp } from './vue-tool'
+const delay = 200
 const NAME = 'drawer-vbt'
-
+function IsPC() {
+  var userAgentInfo = navigator.userAgent;
+  var Agents = ["Android", "iPhone",
+              "SymbianOS", "Windows Phone",
+              "iPad", "iPod"];
+  var flag = true;
+  for (var v = 0; v < Agents.length; v++) {
+      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = false;
+          break;
+      }
+  }
+  return flag;
+}
 
 export default {
   name: NAME,
   props: {
+    body: Boolean,
     title: [String],
     direction: {
       type: String,
@@ -174,12 +204,14 @@ export default {
       default: 100
     }
   },
+
   data () {
     return {
-      active: false,
-      opened: false,
       tempTitle: '',
-      count: 0
+      count: 0,
+      pc: IsPC(),
+      open: false, // 是否打开
+      exist: false, // 是否存在
     }
   },
 
@@ -190,49 +222,46 @@ export default {
       }
     }
   },
+
+  beforeDestroy () {
+    clearTimeout(this.timer12)
+    if(hasProp(this.body)) {
+      removeElement(this.$el)  
+    }
+  },
+
+  mounted () {
+    this.$nextTick(() => {
+      if(hasProp(this.body)) {
+        if (document.body.append) {
+          document.body.append(this.$el);
+        } else {
+          document.body.appendChild(this.$el);
+        }
+      }
+    })
+  },
   
   methods: {
     updateIndex () {
       return new Promise(resolve => {
         this.count = _Number(getConfig(NAME)) + 1
         setConfig(NAME, this.count)
-        this.$nextTick(resolve)
+        this.exist = true
+        this.$nextTick(() => {
+          this.open = true
+          resolve()
+        })
       })
-    },
-    getClass () {
-      let dirClass = ''
-      switch (this.direction) {
-        case 'right':
-          dirClass = 'dir-right'
-          break;
-        case 'center':
-          dirClass = 'dir-center'
-          break;
-        case 'left':
-          dirClass = 'dir-left'
-          break;
-        case 'bottom':
-          dirClass = 'dir-bottom'
-          break;
-      }
-
-      if(this.width) (dirClass += ' auto-width');
-      if(this.height) (dirClass += ' auto-height');
-      return [
-        dirClass,
-        this.active ? 'active' : '',
-        this.opened ? 'opened' : ''
-      ]
     },
 
     async show () {
+      clearTimeout(this.timer12)
       await this.updateIndex()
-      this.opened = true
       this.tempTitle = document.title
-      document.title = this.title
-      setTimeout(() => {
-        this.active = true
-      }, 30)
+      if(this.title !== '' && this.title != null) {
+        document.title = this.title
+      }
     },
 
     mkClose () {
@@ -242,12 +271,13 @@ export default {
     },
 
     close () {
-      this.active = false
       document.title = this.tempTitle
-      setTimeout(() => {
-        this.opened = false
-        this.$emit('on-closed')
-      }, 200)
+      this.open = false
+      clearTimeout(this.timer12)
+      this.timer12 = setTimeout(() => {
+        this.exist = false
+        this.$emit('on-close')
+      }, delay)
     }
   },
 }

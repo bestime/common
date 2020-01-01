@@ -67,7 +67,7 @@
   <div class="switch-vbt" :class="{'open': value == 1, 'has-slots': hasSlots}" :style="{'font-size': `${size}px`}">   
     <div class="switch-main" @click="toggle">
       <div class="vbt-cir">
-        <Loading v-if="changeing"/>
+        
       </div>
     </div>
     <div class="switch-vbt-text">
@@ -77,13 +77,9 @@
 </template>
 
 <script>
-import Loading from './Loading.vue'
 import { _Number } from './vue-tool'
 export default {
   name: 'switch-vbt',
-  components: {
-    Loading
-  },
   props: {
     value: {
       type: [Number, String, Boolean],
@@ -124,9 +120,6 @@ export default {
         this.$emit('input', toVal)
       }
     },
-    isLoading () {
-      return this.changeing
-    }
   },
   watch: {
     value (newVal, oldVal) {

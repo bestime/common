@@ -1,6 +1,6 @@
 {
   "name": "jcy-common",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "常用js函数、vue组件",
   "main": "index.js",
   "scripts": {

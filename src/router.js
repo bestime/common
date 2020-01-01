@@ -23,6 +23,11 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "eg-checkbox" */'@components/eg-checkbox/index.vue')
   },
   {
+    path: '/eg-drawer',
+    name: 'Drawer',
+    component: () => import(/* webpackChunkName: "eg-drawer" */'@components/eg-drawer/index.vue')
+  },
+  {
     path: '/transform-code',
     name: '代码转化',
     component: () => import(/* webpackChunkName: "transform-code" */'@components/transform-code.vue')
