@@ -6,6 +6,8 @@
       ref="demo"
       width="auto"
       height="300px"
+      radius="20px"
+      body
       title="底部打开"
     />
   </div>

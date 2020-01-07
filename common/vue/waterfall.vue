@@ -81,11 +81,19 @@ export default {
             if(!list.length) return;
             list.sort((a, b) => a.index > b.index ? 1 : -1)
             clearInterval(this.timer)
+            let isItemHeightChange = false
             this.timer = setInterval(() => {
               list = findComponentsDownward(this, 'waterfall-item')
-              list.sort((a, b) => a.index > b.index ? 1 : -1)    
+              list.sort((a, b) => {
+                if(a.$el.offsetHeight !== a.tempHeight) {
+                  a.tempHeight = a.$el.offsetHeight
+                  isItemHeightChange = true
+                }
+                return a.index > b.index ? 1 : -1
+              })    
               maxWidth = this.getWidth()
-              if((this.childNumber!==list.length) || (maxWidth!==this.maxWidth)) {
+              // 高度变化才重新计算
+              if(isItemHeightChange) {
                 this.childNumber = list.length
                 this.maxWidth = maxWidth
                 this.onChildUpdate()

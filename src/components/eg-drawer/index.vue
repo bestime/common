@@ -56,19 +56,28 @@ export default {
 function getCenter () {
   return `
 <template>
-  <div>
-    <button @click="$refs.demo.show()">中间打开<\/button>
-    <Drawer direction="center" ref="demo" title="中间打开">
-      <div style="height:2000px;width:2000px;background:red;"><\/div>
+  <div>    
+    <vbt-button type="success" @click="$refs.demo.show()">中间打开<\/vbt-button>
+    <Drawer
+      :mask-close="false"
+      body
+      direction="center"
+      ref="demo"
+      title="中间打开"
+      radius="20px"
+    >
+      <div style="height:400px;width:400px;"><\/div>
     <\/Drawer>
   <\/div>
 <\/template>
 
 <script>
 import Drawer from 'jcy-common/vue/Drawer'
+import Button from 'jcy-common/vue/Button'
 export default {
   components: {
-    Drawer
+    Drawer,
+    'vbt-button': Button
   }
 }
 <\/script>
@@ -79,12 +88,13 @@ function getTop () {
   return `
 <template>
   <div>
-    <button @click="$refs.demo.show()">顶部打开<\/button>
+    <vbt-button type="error" @click="$refs.demo.show()">顶部打开<\/vbt-button>
     <Drawer
       direction="top"
       ref="demo"
       width="auto"
       height="300px"
+      radius="20px"
       title="顶部打开"
     />
   <\/div>
@@ -92,9 +102,11 @@ function getTop () {
 
 <script>
 import Drawer from 'jcy-common/vue/Drawer'
+import Button from 'jcy-common/vue/Button'
 export default {
   components: {
-    Drawer
+    Drawer,
+    'vbt-button': Button
   }
 }
 <\/script>
@@ -105,12 +117,14 @@ function getBottom () {
   return `
 <template>
   <div>
-    <button @click="$refs.demo.show()">底部打开<\/button>
+    <vbt-button type="warning" @click="$refs.demo.show()">底部打开<\/vbt-button>
     <Drawer
       direction="bottom"
       ref="demo"
       width="auto"
       height="300px"
+      radius="20px"
+      body
       title="底部打开"
     />
   <\/div>
@@ -118,9 +132,11 @@ function getBottom () {
 
 <script>
 import Drawer from 'jcy-common/vue/Drawer'
+import Button from 'jcy-common/vue/Button'
 export default {
   components: {
-    Drawer
+    Drawer,
+    'vbt-button': Button
   }
 }
 <\/script>
@@ -131,11 +147,13 @@ function getLeft () {
   return `
 <template>
   <div>
-    <button @click="$refs.demo.show()">左侧打开<\/button>
+    <vbt-button type="default" size="default" @click="$refs.demo.show()">左侧打开<\/vbt-button>
     <Drawer
       direction="left"
       ref="demo"
       width="300px"
+      radius="20px"
+      body
       title="左侧打开"
     />
   <\/div>
@@ -143,12 +161,14 @@ function getLeft () {
 
 <script>
 import Drawer from 'jcy-common/vue/Drawer'
+import Button from 'jcy-common/vue/Button'
 export default {
   components: {
-    Drawer
+    Drawer,
+    'vbt-button': Button
   }
 }
-<\/script> 
+<\/script>
   `
 }
 
@@ -157,11 +177,13 @@ function getRight () {
   return `
 <template>
   <div>
-    <button @click="$refs.demo.show()">右侧打开<\/button>
+    <vbt-button size="small" @click="$refs.demo.show()">右侧打开<\/vbt-button>
     <Drawer
       direction="right"
       ref="demo"
       width="300px"
+      radius="20px"
+      body
       title="右侧打开"
     />
   <\/div>
@@ -169,9 +191,11 @@ function getRight () {
 
 <script>
 import Drawer from 'jcy-common/vue/Drawer'
+import Button from 'jcy-common/vue/Button'
 export default {
   components: {
-    Drawer
+    Drawer,
+    'vbt-button': Button
   }
 }
 <\/script>

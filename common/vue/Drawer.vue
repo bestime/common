@@ -1,40 +1,44 @@
 <style lang="stylus" rel="stylesheet/stylus">
-.dop_right-enter-active, .dop_right-leave-active
-  transition 0.15s ease-out
+$duration = 0.2s
+
+.dop_right-enter-active, .dop_right-leave-active,
+.dop_left-enter-active, .dop_left-leave-active,
+.dop_bottom-enter-active, .dop_bottom-leave-active
+  transition $duration ease
+
+
 .dop_right-enter, .dop_right-leave-to
   opacity 0
   transform translateX(100px)
 
-.dop_left-enter-active, .dop_left-leave-active
-  transition 0.15s ease-out
 .dop_left-enter, .dop_left-leave-to
   opacity 0
   transform translateX(-100px)
 
-.dop_bottom-enter-active, .dop_bottom-leave-active
-  transition 0.15s ease-out
 .dop_bottom-enter, .dop_bottom-leave-to
   opacity 0
   transform translateY(100px)
 
 .dop_center-enter-active
-  transition 0.15s cubic-bezier(0.245, 0.890, 0.175, 1.210)
+  transition $duration cubic-bezier(0.245, 0.890, 0.175, 1.210)
+
 .dop_center-leave-active
-  transition 0.15s cubic-bezier(0.850, -1.1, 0.540, 1.650)
+  transition $duration cubic-bezier(0.850, -1.1, 0.540, 1.650)
   
 .dop_center-enter, .dop_center-leave-to
   opacity 0
   transform scale(0.7)
 
-
 .dop_top-enter-active, .dop_top-leave-active
-  transition 0.15s ease-out
+  transition $duration ease-out
+
 .dop_top-enter, .dop_top-leave-to
   opacity 0
   transform translateY(-100px)
 
 .mkp85-enter-active, .mkp85-leave-active
-  transition 0.2s ease-out
+  transition $duration ease-out
+
 .mkp85-enter, .mkp85-leave-to
   opacity 0
 
@@ -48,21 +52,21 @@
     flex 1
     position relative
     overflow auto
-    overflow-x hidden
   .drawer-content
     position absolute
     -webkit-overflow-scrolling touch
-    box-shadow 0 0 20px rgba(0,0,0,0.2)
+    box-shadow 0 0 20px rgba(0,0,0,0.3)
     display flex
     flex-direction column
     background #fff
+    box-sizing border-box
   .drawer-bg
     position absolute
     left 0
     right 0
     bottom 0
     top 0
-    background rgba(0,0,0,0.3)  
+    background rgba(0,0,0,0.5)  
   .d-title
     display flex
     align-items center
@@ -89,6 +93,11 @@
       top 0
       bottom 0
       left auto
+    .drawer-content, .d-title
+      border-top-right-radius 0 !important
+      border-bottom-right-radius 0 !important
+    .d-title
+      border-bottom-left-radius 0 !important
   &.left
     .d-back
       transform rotate(-180deg)
@@ -97,6 +106,12 @@
       top 0
       bottom 0
       left 0
+    .drawer-content, .d-title
+      border-top-left-radius 0 !important
+      border-bottom-left-radius 0 !important
+    .d-title
+      border-bottom-right-radius 0 !important
+      
   &.bottom
     .d-back
       transform rotate(90deg)
@@ -105,6 +120,10 @@
       top auto
       bottom 0
       left 0
+    
+    .drawer-content, .d-title
+      border-bottom-left-radius 0 !important
+      border-bottom-right-radius 0 !important
   &.top
     .d-back
       transform rotate(-90deg)
@@ -113,6 +132,11 @@
       top 0
       bottom auto
       left 0
+    .drawer-content
+      border-top-left-radius 0 !important
+      border-top-right-radius 0 !important
+    .d-title
+      border-radius 0 !important
   &.center
     display flex
     align-items center
@@ -121,12 +145,14 @@
       position relative
       max-height 80%
       max-width 80%
-  
+    .d-title
+      border-bottom-left-radius 0 !important
+      border-bottom-right-radius 0 !important
 </style>
 
 <template>
   <div
-    v-show="exist"
+    v-if="exist"
     :title="null"
     ref="wrapper"
     class="drawer-vbt"
@@ -143,10 +169,17 @@
         :class="contentClass"
         :style="{
           'width': (width || direction !== 'center') ? width : 'auto',
-          'height': (height || direction !== 'center') ? height : 'auto'
+          'height': (height || direction !== 'center') ? height : 'auto',
+          'border-radius': radius
         }"
       >
-        <div class="d-title" v-if="title">
+        <div
+          class="d-title"
+          v-if="title"
+          :style="{
+            'border-radius': radius
+          }"
+        >
           <div>{{ title }}</div>
           <div class="d-back" @click="close()">
             <i class="vbt-icon">{{ direction=='center' ? '&#xe603;' : '&#xe63b;' }}</i>
@@ -161,13 +194,12 @@
 </template>
 
 <script>
+const NAME = 'drawer-vbt', delay = 200;
 import getConfig from '../js/split/getConfig'
 import setConfig from '../js/split/setConfig'
 import _Number from '../js/split/_Number'
 import removeElement from '../js/split/removeElement'
 import { hasProp } from './vue-tool'
-const delay = 200
-const NAME = 'drawer-vbt'
 function IsPC() {
   var userAgentInfo = navigator.userAgent;
   var Agents = ["Android", "iPhone",
@@ -195,13 +227,17 @@ export default {
     contentClass: String,
     width: String,
     height: String,
-    maskclose: {
+    maskClose: {
       type: Boolean,
       default: true
     },
     baseIndex: {
       type: [Number, String],
       default: 100
+    },
+    radius: {
+      type: String,
+      default: '0'
     }
   },
 
@@ -265,7 +301,7 @@ export default {
     },
 
     mkClose () {
-      if(this.maskclose) {
+      if(this.maskClose) {
         this.close()
       }
     },

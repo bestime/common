@@ -5,6 +5,8 @@
       direction="right"
       ref="demo"
       width="300px"
+      radius="20px"
+      body
       title="右侧打开"
     />
   </div>

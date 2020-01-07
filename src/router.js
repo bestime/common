@@ -28,6 +28,16 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "eg-drawer" */'@components/eg-drawer/index.vue')
   },
   {
+    path: '/eg-slide-operate',
+    name: '侧滑操做',
+    component: () => import(/* webpackChunkName: "eg-eg-slide-operate" */'@components/eg-slide-operate/index.vue')
+  },
+  {
+    path: '/eg-button',
+    name: '按钮',
+    component: () => import(/* webpackChunkName: "eg-button" */'@components/eg-button/index.vue')
+  },
+  {
     path: '/transform-code',
     name: '代码转化',
     component: () => import(/* webpackChunkName: "transform-code" */'@components/transform-code.vue')

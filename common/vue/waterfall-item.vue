@@ -7,7 +7,6 @@
   padding 0
   border none
   box-sizing border-box
-  
 </style>
 
 <template>
@@ -16,7 +15,7 @@
     class="waterfall-item"
     :style="pos"
   >
-    <slot/>  
+    <slot/>
   </div>
 </template>
 
@@ -25,24 +24,29 @@ import { findComponentUpward } from './vue-tool'
 const NAME = 'waterfall-item'
 export default {
   name: NAME,
+
   props: {
     index: Number
   },
+
   data () {
     return {
       father: findComponentUpward(this, 'waterfall-wrapper'),
       top: 0,
       left: 0,
+      tempHeight: 0
     }
   },
+
   computed: {
     pos () {
       return {
         left: `${this.left}px`,
-        top: `${this.top}px`,
+        top: `${this.top}px`
       }
     }
   },
+
   mounted () {
     this.$nextTick(() => {
       if(this.father) {
@@ -50,6 +54,7 @@ export default {
       }
     })
   },
+
   methods: {
     updatePos (left, top) {
       this.left = left
