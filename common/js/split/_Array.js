@@ -1,4 +1,4 @@
-var isArray = require('./isArray')
+import isArray from './isArray'
 
 export default function (data, def) {
   const temp = isArray(def) ? def : []

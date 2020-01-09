@@ -1,3 +1,6 @@
+import _Array from '../js/split/_Array'
+import trim from '../js/split/trim'
+
 // 寻找子组件 - 数组
 export function findComponentsDownward (context, componentName) {
   return context.$children.reduce((components, child) => {
@@ -27,4 +30,13 @@ export function findComponentUpward (context, componentName, componentNames) {
 // 判断vue是否有某个prop属性
 export function hasProp(data) {
   return data === '' || data === true || data === 'true'
+}
+
+/**
+ * 格式化class数组为字符串
+ * @param {list} Array
+ * @return {String}
+ */
+export function fomatClassName (list) {
+  return trim(_Array(list).join(' ').replace(/ +/g, ' '))
 }

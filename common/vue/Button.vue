@@ -1,4 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
+@import "./theme.styl"
 getCurrentColor(type, alpha)
   if type == 'primary'
     getActiveColor(alpha)
@@ -33,9 +34,10 @@ getStyle(type)
       color #fff
       &:not(.disabled)
         &:hover
-          background getCurrentColor(type, 0.8)
+          background getCurrentColor(type, 0.6)
         &:active
-          box-shadow 0 0 0 2px getCurrentColor(type, 0.2)
+          background getCurrentColor(type, 1)
+          box-shadow 0 0 0 2px getCurrentColor(type, 0.3)
     &.plan
       background getCurrentColor(type, 0.1)
       border-color getCurrentColor(type, 0.2)
@@ -47,7 +49,7 @@ getStyle(type)
           color #fff
         &:active
           background getCurrentColor(type, 0.7)
-@import "./theme.styl"
+
 .vbt-button
   display inline-flex
   align-items center
@@ -57,16 +59,38 @@ getStyle(type)
   cursor pointer
   transition 0.15s
   border transparent solid 1px
+  margin 0
+  outline none
+  word-break keep-all
+  flex-shrink 0
   &.size-default
     height 32px
     padding 0 15px
     font-size 14px
     border-radius 4px
+    &.round
+      border-radius 16px
   &.size-small
     height 26px
     padding 0 7px
     font-size 12px
     border-radius 3px
+    &.round
+      border-radius 13px
+  &.size-middle
+    height 40px
+    font-size 14px
+    padding 0 18px
+    border-radius 3px
+    &.round
+      border-radius 20px
+  &.size-big
+    height 48px
+    font-size 16px
+    padding 0 40px
+    border-radius 3px
+    &.round
+      border-radius 24px
   &.primary
     getStyle('primary')
   &.warning
@@ -85,23 +109,25 @@ getStyle(type)
 </style>
 
 <template>
-  <div
+  <button
     class="vbt-button"
-    :class="[
+    :class="fomatClassName([
       type,
       `size-${size}`,
       hasProp(plain) ? 'plan' : '',
-      hasProp(disabled) ? 'disabled' : ''
-    ].join(' ')"
+      hasProp(disabled) ? 'disabled' : '',
+      hasProp(round) ? 'round' : ''
+    ])"
     @click="!hasProp(disabled) && $emit('click')"
-    
+    @mouseenter="$emit('mouseenter')"
+    @mouseleave="$emit('mouseleave')"
   >
     <slot/>
-  </div>
+  </button>
 </template>
 
 <script>
-import { hasPros } from './vue-tool'
+import { fomatClassName } from './vue-tool'
 export default {
   props: {
     type: {
@@ -113,7 +139,11 @@ export default {
       default: 'default'
     },
     plain: null,
-    disabled: null
+    disabled: null,
+    round: null
+  },
+  methods: {
+    fomatClassName
   }
 }
 </script>

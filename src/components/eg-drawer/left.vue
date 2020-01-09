@@ -4,7 +4,6 @@
     <Drawer
       direction="left"
       ref="demo"
-      width="300px"
       radius="20px"
       body
       title="左侧打开"

@@ -21,7 +21,7 @@
       .vbt-cir
         width 1.2em
   .switch-vbt-text
-    font-size 0.5em
+    font-size 0.6em
     color #666
   &.has-slots
     .switch-vbt-text
@@ -61,10 +61,24 @@
         background getActiveColor(1)
     .switch-vbt-text
       color getActiveColor(1)
+  &.disabled
+    opacity 0.5
+    *
+      cursor not-allowed !important
 </style>
 
 <template>
-  <div class="switch-vbt" :class="{'open': value == 1, 'has-slots': hasSlots}" :style="{'font-size': `${size}px`}">   
+  <div
+    class="switch-vbt"
+    :class="{
+      'open': value == 1,
+      'has-slots': hasSlots,
+      disabled: hasProp(disabled)
+    }"
+    :style="{
+      'font-size': `${size}px`
+    }"
+  >   
     <div class="switch-main" @click="toggle">
       <div class="vbt-cir">
         
@@ -77,7 +91,7 @@
 </template>
 
 <script>
-import { _Number } from './vue-tool'
+import { _Number, hasProp } from './vue-tool'
 export default {
   name: 'switch-vbt',
   props: {
@@ -88,7 +102,8 @@ export default {
     id: null,
     size: {
       default: 26
-    }
+    },
+    disabled: null
   },
   computed: {
     hasSlots () {
@@ -103,7 +118,7 @@ export default {
   },
   methods: {
     toggle () {
-      if(this.changeing) return;
+      if(this.changeing || this.disabled) return;
       const toVal = !Number(this.value)
       this.count++
       if(this.$listeners['on-change']) {

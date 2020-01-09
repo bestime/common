@@ -1,4 +1,4 @@
-const getType = require('./getType')
+import getType from './getType'
 
 function isArray (data) {
   return getType(data) === 'Array'

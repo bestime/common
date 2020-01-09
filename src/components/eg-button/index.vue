@@ -2,7 +2,7 @@
 </style>
 <template>
   <div>
-    <example title="侧滑分组，自动关闭其他项">
+    <example title="Button合集">
       <buttons slot="demo"/>
       <code-view slot="code" :content="getButons()"/>
     </example>

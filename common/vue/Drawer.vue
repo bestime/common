@@ -225,7 +225,10 @@ export default {
       default: 'right'
     },
     contentClass: String,
-    width: String,
+    width: {
+      type: String,
+      default: '80%'
+    },
     height: String,
     maskClose: {
       type: Boolean,

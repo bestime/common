@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 Vue.use(Router)
+
 export const routerList = [
   {
     path: '*',
@@ -34,8 +36,28 @@ export const routerList = [
   },
   {
     path: '/eg-button',
-    name: '按钮',
+    name: 'Button按钮',
     component: () => import(/* webpackChunkName: "eg-button" */'@components/eg-button/index.vue')
+  },
+  {
+    path: '/eg-switch',
+    name: 'Switch开关',
+    component: () => import(/* webpackChunkName: "eg-switch" */'@components/eg-switch/index.vue')
+  },
+  {
+    path: '/eg-select',
+    name: 'Select下拉选择',
+    component: () => import(/* webpackChunkName: "eg-select" */'@components/eg-select/index.vue')
+  },
+  {
+    path: '/eg-menu',
+    name: 'Menu菜单',
+    component: () => import(/* webpackChunkName: "eg-menu" */'@components/eg-menu/index.vue')
+  },
+  {
+    path: '/eg-loading',
+    name: 'Loading',
+    component: () => import(/* webpackChunkName: "eg-loading" */'@components/eg-loading/index.vue')
   },
   {
     path: '/transform-code',

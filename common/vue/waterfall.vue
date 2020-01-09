@@ -93,7 +93,11 @@ export default {
               })    
               maxWidth = this.getWidth()
               // 高度变化才重新计算
-              if(isItemHeightChange) {
+              if(
+                isItemHeightChange
+                || (this.childNumber!==list.length)
+                || (maxWidth!==this.maxWidth)
+              ) {
                 this.childNumber = list.length
                 this.maxWidth = maxWidth
                 this.onChildUpdate()

@@ -20,6 +20,15 @@ $margin = 5px
         border-bottom-color transparent
         display inline-block
         position absolute
+        z-index 2
+        left -7px
+      .tri-border
+        border-color getActiveColor(1)
+        border-top-color transparent
+        border-bottom-color transparent
+        margin-left -1px
+        z-index 1
+        left -8px
   // &.active
   //   box-shadow 0 0 0 2px getActiveColor(0.2)
 .menu-more
@@ -32,6 +41,7 @@ $margin = 5px
   box-shadow 0 0 7px rgba(0,0,0,0.3)
   border-radius 4px
   transform-origin left top
+  border getActiveColor(1) solid 1px
 .menu-title
   display flex
   align-items center
@@ -61,7 +71,7 @@ $margin = 5px
     <div class="menu-button" @click="toggle">
       <slot name="button"/>
     </div>
-    <transition name="fade">
+    <transition name="fade-left">
       <div v-show="open" class="menu-more" @click="wrapperClick($event)">
         <div v-if="title" class="menu-title">
           <div>{{title}}</div>
@@ -69,6 +79,7 @@ $margin = 5px
         </div>
         <slot name="menu"/>
         <i :style="trangleStyle" class="triangle"></i>
+        <i :style="trangleStyle" class="triangle tri-border"></i>
       </div>
     </transition>
   </div>  
@@ -128,18 +139,19 @@ export default {
     },
 
     show () {
+      bus.clear(this.xjmkew)
       switch (this.direction) {
         case 'right':
           this.trangleStyle = {
-            top: `${this.$refs.el.offsetHeight / 2 - 8}px`,
-            left: '-8px'
+            top: `${this.$refs.el.offsetHeight / 2 - 8}px`
           }
           break;
       }
       this.open = true
+      
       this.$nextTick(() => {
-        setTimeout(() => {
-          bus.clear(this.xjmkew)
+        this.timer = setTimeout(() => {
+          
           clearTimeout(this.timer)
           this.xjmkew = bus.oneonce('document-click', () => {
             clearTimeout(this.timer)

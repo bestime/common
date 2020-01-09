@@ -155,7 +155,7 @@
 </template>
 
 <script>
-import TextOverflow from './TextOverflow.vue'
+import TextOverflow from './Text.vue'
 import isObject from '../js/split/isObject'
 import bind from '../js/split/bind'
 import unbind from '../js/split/unbind'
@@ -165,12 +165,12 @@ import isEmpty from '../js/split/isEmpty'
 import domShowDir from '../js/split/domShowDir'
 import { hasProp } from './vue-tool'
 
-const testArr = new Array(15).fill('').map((item, index) => {
-  return {
-    key: `a_${index}`,
-    label: `示例${index}`
-  }
-})
+// const testArr = new Array(15).fill('').map((item, index) => {
+//   return {
+//     key: `a_${index}`,
+//     label: `示例${index}`
+//   }
+// })
 
 export default {
   name: 'select-vbt',
@@ -191,7 +191,7 @@ export default {
     options: {
       type: Array,
       default () {
-        return testArr
+        return []
       }
     }
   },
@@ -229,7 +229,6 @@ export default {
     isEmpty,
     bodyClick () {
       if(this.open) {
-        console.log('下拉关闭')
         this.close()
       }
     },
