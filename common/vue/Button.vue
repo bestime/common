@@ -49,7 +49,6 @@ getStyle(type)
           color #fff
         &:active
           background getCurrentColor(type, 0.7)
-
 .vbt-button
   display inline-flex
   align-items center
