@@ -5,32 +5,29 @@ $margin = 5px
   display inline-block
   position relative
   &.right
-    .menu-more
-      .triangle
-        margin 0
-        padding 0
-        font-size 0
-        line-height 0
-        border-width 8px
-        border-color #fff
-        border-style dashed
-        border-left-width 0
-        border-right-style solid
-        border-top-color transparent
-        border-bottom-color transparent
-        display inline-block
-        position absolute
-        z-index 2
-        left -7px
-      .tri-border
-        border-color getActiveColor(1)
-        border-top-color transparent
-        border-bottom-color transparent
-        margin-left -1px
-        z-index 1
-        left -8px
-  // &.active
-  //   box-shadow 0 0 0 2px getActiveColor(0.2)
+    .triangle
+      margin 0
+      padding 0
+      font-size 0
+      line-height 0
+      border-width 8px
+      border-color #fff
+      border-style dashed
+      border-left-width 0
+      border-right-style solid
+      border-top-color transparent
+      border-bottom-color transparent
+      display inline-block
+      position absolute
+      z-index 2
+      left -7px
+    .tri-border
+      border-color $staticBorderColor
+      border-top-color transparent
+      border-bottom-color transparent
+      margin-left -1px
+      z-index 1
+      left -8px
 .menu-more
   position absolute
   left 100%
@@ -41,7 +38,7 @@ $margin = 5px
   box-shadow 0 0 7px rgba(0,0,0,0.3)
   border-radius 4px
   transform-origin left top
-  border getActiveColor(1) solid 1px
+  border $staticBorderColor solid 1px
 .menu-title
   display flex
   align-items center

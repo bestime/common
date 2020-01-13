@@ -188,6 +188,7 @@ $duration = 0.2s
         <div class="drawer-body">
           <slot/>
         </div>
+        <slot name="bottom"/>
       </div> 
     </transition>
   </div>  
