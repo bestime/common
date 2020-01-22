@@ -65,6 +65,11 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "eg-tags" */'@components/eg-tags/index.vue')
   },
   {
+    path: '/eg-radio',
+    name: 'radio',
+    component: () => import(/* webpackChunkName: "eg-radio" */'@components/eg-radio/index.vue')
+  },
+  {
     path: '/transform-code',
     name: '代码转化',
     component: () => import(/* webpackChunkName: "transform-code" */'@components/transform-code.vue')
