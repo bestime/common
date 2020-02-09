@@ -10,6 +10,10 @@ Vue.config.productionTip = false
 
 import 'jcy-common/vue'
 
+import dataLayout from 'jcy-common/js/split/dataLayout'
+
+console.log('dataLayout', dataLayout({list: [],info:{}}, {name:'大'}))
+
 import { hasProp } from 'jcy-common/vue/vue-tool'
 
 import CodeView from '@base/code-view'
