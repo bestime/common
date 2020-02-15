@@ -10,9 +10,8 @@ Vue.config.productionTip = false
 
 import 'jcy-common/vue'
 
-import dataLayout from 'jcy-common/js/split/dataLayout'
+import debounce from 'jcy-common/js/split/debounce'
 
-console.log('dataLayout', dataLayout({list: [],info:{}}, {name:'大'}))
 
 import { hasProp } from 'jcy-common/vue/vue-tool'
 

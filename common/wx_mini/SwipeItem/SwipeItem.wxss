@@ -1,0 +1,64 @@
+.swipe-item {
+  display:flex;
+  align-items:center;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+/* .swipe-item.bounce .swipt-front,
+.swipe-item.bounce .bkm{
+  transition:0.2s ease-out;
+} */
+
+.swipt-front {
+  position:relative;
+  z-index:2;
+  flex:1;
+}
+
+.swipe-back {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.bkm {
+  position:absolute;
+  right:0;
+  top:0;
+  bottom:0;
+  left:auto;
+  display:flex;
+}
+
+.btn {
+  display:inline-flex;
+  justify-content: flex-start;
+  position: relative;
+  overflow:hidden;
+  padding:0 10rpx;
+}
+
+.btct {  
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.btct text {
+  word-break: keep-all;
+  font-size:30rpx;
+  display:block;
+  width: max-content;
+  text-align:center;
+}
