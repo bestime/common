@@ -6,3 +6,21 @@
 
 ### 准备
 - `css`预处理器需要`stylus`
+
+
+
+
+
+
+
+- 发布npm包
+	```
+	npm init
+	npm login
+	npm publish
+	```
+- 更新npm包
+  ```
+  npm version patch
+  npm publish
+  ```

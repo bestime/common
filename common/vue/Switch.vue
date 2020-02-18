@@ -117,6 +117,7 @@ export default {
     }
   },
   methods: {
+    hasProp,
     toggle () {
       if(this.changeing || this.disabled) return;
       const toVal = !Number(this.value)
@@ -124,7 +125,7 @@ export default {
       if(this.$listeners['on-change']) {
         this.changeing = true
         let count = this.count
-        this.$emit('on-change', toVal, () => {
+        this.$emit('on-change', toVal, this.id, () => {
           // 可能由外部强制改变了，这个操作无效
           if(this.count===count) {
             this.changeing = false

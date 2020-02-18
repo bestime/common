@@ -1,4 +1,4 @@
-import _Object from '../../js/split/_Object.js'
+import _Object from '../js/split/_Object.js'
 
 // 确定对话框
 export default function showModal(opt) {

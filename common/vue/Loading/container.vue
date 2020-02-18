@@ -44,6 +44,9 @@ export default {
       type: Number,
       default: 40
     }
+  },
+  methods: {
+    hasProp
   }
 }
 </script>

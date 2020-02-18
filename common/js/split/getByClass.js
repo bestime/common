@@ -12,8 +12,10 @@
 
 
 import forEach from './forEach'
-import getByClass from './getByClass'
+import getById from './getById'
 import hasClass from './hasClass'
+
+
 
 function getByClass (str, oFather){
   var res;

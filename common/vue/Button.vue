@@ -126,7 +126,7 @@ getStyle(type)
 </template>
 
 <script>
-import { fomatClassName } from './vue-tool'
+import { fomatClassName, hasProp } from './vue-tool'
 export default {
   props: {
     type: {
@@ -142,7 +142,8 @@ export default {
     round: null
   },
   methods: {
-    fomatClassName
+    fomatClassName,
+    hasProp
   }
 }
 </script>
