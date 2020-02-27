@@ -16,7 +16,7 @@
 </style>
 
 <template>
-  <div class="flex_row_center_center vbt-loading-container">
+  <div class="vbt-loading-container">
     <transition name="fade">
       <div v-if="hasProp(value)" class="vbt-loading-mask">
         <Loading :type="type" :size="size" color="#fff" :label="label"/>

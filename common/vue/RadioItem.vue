@@ -8,6 +8,19 @@
   align-items center
   cursor pointer
   user-select none
+  box-sizing border-box
+  transition 0.2s
+  &.button
+    border $staticBorderColor solid 1px
+    height 30px
+    padding 0 12px
+    b
+      display none
+    &:hover
+      border-color getActiveColor(1)
+    &.active
+      border-color getActiveColor(1)
+      box-shadow 0 0 0 2px getActiveColor(0.2)
   b
     width 16px
     height 16px
@@ -44,7 +57,7 @@
 </style>
 
 <template>
-  <div class="vbt-radio-item" :class="{active: isActive}" @click="toggle">
+  <div class="vbt-radio-item" :class="{active: isActive, 'button': type=='button'}" @click="toggle">
     <b></b>
     <slot></slot>
   </div>
@@ -59,6 +72,10 @@ export default {
       type: [Boolean, Number],
       default: false
     },
+    type: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     isActive () {

@@ -70,7 +70,7 @@ getStyle(type)
 <template>
   <span class="vbt-tag" :class="type">
     <slot/>
-    <i class="vbt-icon" v-if="hasProp(close)" @click="$emit('on-delete')">&#xe603;</i>
+    <i class="vbt-icon" v-if="hasProp(close)" @click="click">&#xe603;</i>
   </span>
 </template>
 
@@ -78,11 +78,18 @@ getStyle(type)
 import { hasProp } from './vue-tool'
 export default {
   props: {
+    id: [String, Number],
     type: {
       type: String,
       default: 'default', // warning, error, success, info, primary
     },
     close: Boolean
+  },
+  methods: {
+    hasProp,
+    click () {
+      this.$emit('on-delete', this.id)
+    }
   }
 }
 </script>

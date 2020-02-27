@@ -70,6 +70,16 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "eg-radio" */'@components/eg-radio/index.vue')
   },
   {
+    path: '/eg-input',
+    name: 'eg-input',
+    component: () => import(/* webpackChunkName: "eg-input" */'@components/eg-input/index.vue')
+  },
+  {
+    path: '/eg-tab',
+    name: 'eg-tab',
+    component: () => import(/* webpackChunkName: "eg-textarea" */'@components/eg-tab/index.vue')
+  },
+  {
     path: '/transform-code',
     name: '代码转化',
     component: () => import(/* webpackChunkName: "transform-code" */'@components/transform-code.vue')

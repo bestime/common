@@ -55,6 +55,7 @@ getStyle(type)
   justify-content center
   box-sizing border-box
   user-select none
+  vertical-align middle
   cursor pointer
   transition 0.15s
   border transparent solid 1px

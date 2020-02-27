@@ -198,6 +198,7 @@ $duration = 0.2s
 const NAME = 'drawer-vbt', delay = 200;
 import getConfig from '../js/split/getConfig'
 import setConfig from '../js/split/setConfig'
+import isFunction from '../js/split/isFunction'
 import _Number from '../js/split/_Number'
 import removeElement from '../js/split/removeElement'
 import { hasProp } from './vue-tool'
@@ -295,9 +296,10 @@ export default {
       })
     },
 
-    async show () {
+    async show (callback) {
       clearTimeout(this.timer12)
       await this.updateIndex()
+      isFunction(callback) && callback()
       this.tempTitle = document.title
       if(this.title !== '' && this.title != null) {
         document.title = this.title
