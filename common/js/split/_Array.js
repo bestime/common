@@ -1,6 +1,7 @@
 import isArray from './isArray'
 
-export default function (data, def) {
-  const temp = isArray(def) ? def : []
-  return isArray(data) ? data : temp  
+function _Array (data) {
+  return isArray(data) ? data : JSONPARSE(data, 'Array')
 }
+
+export default _Array

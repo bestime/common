@@ -70,7 +70,7 @@ getStyle(type)
 <template>
   <span class="vbt-tag" :class="type">
     <slot/>
-    <i class="vbt-icon" v-if="hasProp(close)" @click="click">&#xe603;</i>
+    <i class="vbt-icon" v-if="hasProp(close)" @click="toDelete">&#xe603;</i>
   </span>
 </template>
 
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     hasProp,
-    click () {
+    toDelete () {
       this.$emit('on-delete', this.id)
     }
   }
