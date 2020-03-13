@@ -312,13 +312,14 @@ export default {
       }
     },
 
-    close () {
+    close (callback) {
       document.title = this.tempTitle
       this.open = false
       clearTimeout(this.timer12)
       this.timer12 = setTimeout(() => {
         this.exist = false
         this.$emit('on-close')
+        isFunction(callback) && callback();
       }, delay)
     }
   },

@@ -6,7 +6,11 @@
   box-sizing border-box
   vertical-align middle
   font-size 12px
-  min-width 100px
+  .sv-btn
+    display flex
+    align-items center
+    justify-content center
+    padding 10px
   .vbt-icon
     font-size 12px
     color #999
@@ -18,7 +22,6 @@
     user-select none
     display flex
     width 100%
-    border $staticBorderColor solid 1px
     cursor pointer
     transition:0.15s
     position:relative
@@ -35,12 +38,9 @@
         height 0
         border-left 4px solid transparent
         border-right 4px solid transparent
-        border-top 5px solid $staticTextColor
+        border-top 5px solid getActiveColor(1)
         transition 0.2s ease-out
-        position absolute
-        right 10px
-        top 50%
-        margin-top:-2px
+        margin 0 10px 0 5px
   .text-wrapper
     font-size 14px
     color $staticTextColor
@@ -50,14 +50,19 @@
     margin 0
     width 100%
     position relative  
+    &:hover
+      background getActiveColor(0.1) !important 
+      color getActiveColor(1) !important 
   &.active
+
     .select-more
       transform scaleY(1)
       opacity 1
     .select-main
-      box-shadow 0 0 0 2px getActiveColor(0.2)
       border-color getActiveColor(1)
       .text-wrapper
+        box-shadow 0 0 0 2px getActiveColor(0.3)
+        border-color getActiveColor(1)
         &:after
           transform rotate(180deg)      
   &.close-to
@@ -130,18 +135,21 @@
       .del-wrapper
         display flex
       &:after
-        display none
+        opacity 0
 </style>
 
 <template>
-  <div class="select-vbt" :class="{'active': open, 'close-to': startClose, 'placeholder': !showLabel, 'hasCancel': showLabel}">
-    <div ref="manWrapper" class="select-main" @click="toggle">
-      <div class="text-wrapper">
+  <div class="select-vbt" :class="{'active': open, 'close-to': startClose, 'placeholder': !showLabel, 'hasCancel': showLabel, 'button': hasProp(button)}">
+    <div ref="manWrapper" class="select-main" >
+      <Button @click="toggle"  plain class="text-wrapper" v-if="!hasProp(button)">
         <TextOverflow class="text" line="1">{{ showLabel || placeholder }}</TextOverflow>
         <div class="del-wrapper" v-if="showLabel" @click="clear">
           <i class="vbt-icon">&#xe603;</i>
         </div>     
-      </div>
+      </Button>
+      <Button @click="toggle" v-else>
+        <slot/>
+      </Button>
       
       <ul id="test" ref="more" class="select-more" :class="[dir.vertical]">
         <div v-if="!options.length" class="no-data">暂无选项</div>
@@ -164,6 +172,7 @@ import prevent from '../js/split/prevent'
 import isEmpty from '../js/split/isEmpty'
 import domShowDir from '../js/split/domShowDir'
 import { hasProp } from './vue-tool'
+import Button from './Button'
 
 // const testArr = new Array(15).fill('').map((item, index) => {
 //   return {
@@ -174,8 +183,9 @@ import { hasProp } from './vue-tool'
 
 export default {
   name: 'select-vbt',
-  components: { TextOverflow },
+  components: { TextOverflow, Button },
   props: {
+    button: null,
     deleteItem: null,
     value: null,
     placeholder: {

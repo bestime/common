@@ -8,6 +8,10 @@
   <div class="eg-sst01">
     <vbt-select v-model="user" :options="list"/>
     <vbt-select v-model="user" :options="list"/>
+    <vbt-select button v-model="user" :options="list">
+      <span >换行</span>
+    </vbt-select>
+
   </div>
 </template>
 

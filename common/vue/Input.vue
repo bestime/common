@@ -90,6 +90,7 @@
       />
       <input
         v-else
+        :type="type"
         class="input"
         @focus="onFocus"
         @blur="onBlur"
@@ -111,6 +112,10 @@ import getType from '../js/split/getType'
 export default {
   // 是否显示工具栏
   props: {
+    type: {
+      type: String,
+      default: 'text'
+    },
     showBar: { 
       type: Boolean,
       default: false
