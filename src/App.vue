@@ -41,7 +41,7 @@
 </style>
 
 <template>
-  <div class="app-wrapper">
+  <!-- <div class="app-wrapper">
     <ul class="ba1we5">
       <li @click="goTo(item.name)" v-for="item in routerList" :key="item.name" :class="{active: isActiveRouter(item.name)}">
         {{item.name}}
@@ -52,7 +52,9 @@
         <router-view/>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <router-view/>
 </template>
 
 <script>
