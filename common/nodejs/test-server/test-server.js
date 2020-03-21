@@ -1,27 +1,7 @@
+const Moyu = require('./api/Moyu')
 
 function getRandom (min, max) {
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;    
-}
-function getRandomArray (arr, num) {
-  var usedIndex = {}, res = [], rdIdx;
-  ;(function add () {
-    if(res.length < num && res.length < arr.length) {
-      rdIdx = getRandom(0, arr.length - 1)
-      if(usedIndex[rdIdx]) {
-        add()
-      } else {
-        res.push(arr[rdIdx])
-        usedIndex[rdIdx] = true
-        add()
-      }
-    }
-  })();
-
-  for(var a = res.length; a<num; a++) {
-    res.push('R_'  + a)
-  }
-  
-  return res
 }
 
 const printColor = {
@@ -53,16 +33,10 @@ const printColor = {
 }
 
 
-
-
-
 /**
  * 这是一个简易的node测试 get 和 post 的服务器
  */
 var express = require('express');
-var multer  = require('multer')
-var fs = require('fs');
-var path = require('path')
 const config = {
 	port: 9997
 }
@@ -121,14 +95,14 @@ app.post('/post',function (req, res) {
 })
 
 
-
+Moyu(app);
 
 
 
 // 获取IP
 function getIP () {
 	var interfaces = require('os').networkInterfaces();　
-  console.log('interfaces', interfaces)　
+  // console.log('interfaces', interfaces)　
     for (var devName in interfaces) {　　　　
         var iface = interfaces[devName];　　　　　　
         for (var i = 0; i < iface.length; i++) {
@@ -154,6 +128,8 @@ function server(){
 		}
 	})
 }
+
+
 
 
 // 启动服务	

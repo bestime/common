@@ -1,5 +1,6 @@
 
 const path = require('path')
+const packageInfo = require('./package.json')
 
 module.exports = {
 	devServer: {
@@ -28,6 +29,7 @@ function GET_chainWebpack (config) {
 		args[0].hash = true
 		args[0].inject = 'body'
 		args[0].PACK_TIME = +new Date()
+		args[0].VERSION = packageInfo.version
 		return args
 	})
 

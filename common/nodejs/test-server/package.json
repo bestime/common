@@ -2,7 +2,6 @@
   "name": "node-mail",
   "version": "1.0.0",
   "description": "this is the node-mail test",
-  "main": "mail.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
