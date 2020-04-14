@@ -84,6 +84,7 @@
         @focus="onFocus"
         @blur="onBlur"
         @input="onInput"
+        @keyup.enter="onEnter"
         ref="text"
         :value="value"
         :placeholder="placeholder"
@@ -95,6 +96,7 @@
         @focus="onFocus"
         @blur="onBlur"
         @input="onInput"
+        @keyup.enter="onEnter"
         ref="text"
         :value="value"
         :placeholder="placeholder"
@@ -142,6 +144,9 @@ export default {
     }
   },
   methods: {
+    onEnter () {
+      this.$emit('on-enter')
+    },
     setFocus (bol) {
       if(bol) {
         this.$refs.text.focus()

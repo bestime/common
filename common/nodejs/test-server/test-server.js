@@ -43,9 +43,26 @@ const config = {
 
 var app = new express();
 
+var multer = require("multer");
+
 // post 请求使用
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
+
+
+// 设置图片存储路径
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads');
+  },
+  filename: function(req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`)
+  }
+})
+ 
+// 添加配置文件到muler对象。
+var upload = multer({ storage: storage });
+var imgBaseUrl = '../'
 
 /* 跨域 start */
 app.all('*',function (req, res, next) {
@@ -58,6 +75,36 @@ app.all('*',function (req, res, next) {
         next();
     }
 });
+
+
+
+
+// 文件上传请求处理，upload.array 支持多文件上传，第二个参数是上传文件数目
+app.post('/upload-file', upload.array('img', 2), function (req, res) {
+  // 读取上传的图片信息
+  var files = req.files;
+ 
+  // 设置返回结果
+  var result = {};
+  if(!files[0]) {
+    result.code = 1;
+    result.errMsg = '上传失败';
+  } else {
+    result.code = 0;
+    result.data = {
+      url: files[0].path
+    }
+    result.errMsg = '上传成功';
+  }
+  res.end(JSON.stringify(result));
+});
+
+
+
+
+
+
+
 /* 跨域 end */
 
 app.get('/',function (req, res) {

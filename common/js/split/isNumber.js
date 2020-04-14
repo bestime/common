@@ -12,8 +12,8 @@ import trim from './trim'
  */
 
 
-export default  function isNumber (str, sign, integer) {
-  str = trim(str)
+export default function isNumber (str, sign, integer) {
+  str = trim(str) || '0'
   if(/[^+-.\d]/.test(str)) return false
   var zhengfu = '(-|\\+)?' // 正负
   var xiaoshu = integer==='int' ? '(\.0+)?' : '(\.[0-9]+)?' // 是否整数
@@ -29,7 +29,7 @@ export default  function isNumber (str, sign, integer) {
   
   let res = bol  
   switch(sign) {
-    case '+': res = bol && number > 0; break;
+    case '+': res = bol && number >= 0; break;
     case '-': res = bol && number < 0; break;
   }
   return res
