@@ -76,6 +76,7 @@
       'rows': rows > 1
     }"
   >
+    <!-- <h1>值:{{value}}</h1> -->
     <div class="tea-box">
       <textarea
         v-if="rows>1"
@@ -168,13 +169,15 @@ export default {
     },
 
     onInput (e) {
-      let val = 'InputEvent' === getType(e) ? this.getValue() : this.value
+      let type = getType(e)
+      let toVal = 'InputEvent' === type || type === 'Event' ? this.getValue() : this.value
 
-      let toVal = val
+      console.log('getType(e)', getType(e))
+
+      
       if(this.limit) {
         toVal = toVal.substr(0, this.limit)
       }
-
       if(this.$listeners['on-change']) {
         this.$emit('on-change', toVal, newVal => {
           this.commit(newVal)
@@ -192,11 +195,11 @@ export default {
     commit (toVal) {
       this.$emit('input', toVal)
       if(this.getValue()!=toVal) {
-      //   console.log('!!!!!!!!!!!!!!!!!!!', toVal, '=>',this.getValue())
+        console.log(toVal, '=>',this.$refs.text)
         this.$refs.text.value = toVal
         
       } else {
-        // console.log('没变')
+        console.log('没变')
       }
 
     }
