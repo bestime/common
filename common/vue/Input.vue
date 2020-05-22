@@ -171,9 +171,6 @@ export default {
     onInput (e) {
       let type = getType(e)
       let toVal = 'InputEvent' === type || type === 'Event' ? this.getValue() : this.value
-
-      console.log('getType(e)', getType(e))
-
       
       if(this.limit) {
         toVal = toVal.substr(0, this.limit)
@@ -184,8 +181,7 @@ export default {
         })
       } else {
         this.commit(toVal)        
-      }     
-      
+      }
     },
 
     toClear () {
@@ -195,13 +191,8 @@ export default {
     commit (toVal) {
       this.$emit('input', toVal)
       if(this.getValue()!=toVal) {
-        console.log(toVal, '=>',this.$refs.text)
-        this.$refs.text.value = toVal
-        
-      } else {
-        console.log('没变')
+        this.$refs.text.value = toVal        
       }
-
     }
   },
   watch: {

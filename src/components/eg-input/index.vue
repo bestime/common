@@ -1,4 +1,6 @@
 <style lang="stylus" rel="stylesheet/stylus">
+.cko932kl4
+  margin-top 30px
 </style>
 <template>
   <div>
@@ -17,7 +19,6 @@ export default {
     tex,
     input00
   },
-
   methods: {
     getButons
   }
