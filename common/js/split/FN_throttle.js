@@ -1,5 +1,3 @@
-
-
 import isFunction from './isFunction'
 
 /**
