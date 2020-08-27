@@ -86,6 +86,11 @@ export const routerList = [
     component: () => import(/* webpackChunkName: "eg-textarea" */'@components/eg-tab/index.vue')
   },
   {
+    path: '/eg-infinite-scroll',
+    name: 'eg-infinite-scroll',
+    component: () => import(/* webpackChunkName: "eg-textarea" */'@components/eg-infinite-scroll/index.vue')
+  },
+  {
     path: '/transform-code',
     name: '代码转化',
     component: () => import(/* webpackChunkName: "transform-code" */'@components/transform-code.vue')
