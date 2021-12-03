@@ -117,7 +117,11 @@ app.get('/',function (req, res) {
 
 // get 测试，直接返回传过来的数据
 app.get('/get',function (req, res) {
-	res.json(req.query)
+	res.json({
+		code: 0,
+		msg: '看到这条消息，表示测试正常',
+		data: req.query
+	})
 })
 
 app.get('/external/getadvert',function (req, res) {
@@ -133,6 +137,18 @@ app.get('/external/getadvert',function (req, res) {
 
 // post 测试，直接返回传过来的数据
 app.post('/post',function (req, res) {
+  const data = {
+    msg: '提交成功',
+    code: 1,
+    ...req.body
+  }
+	res.json(data)
+})
+
+
+// post 测试，直接返回传过来的数据
+app.post('/registrationID',function (req, res) {
+	console.log('收到新的registrationID=>',req.body.registrationID)
   const data = {
     msg: '提交成功',
     code: 1,
