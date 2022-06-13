@@ -124,6 +124,19 @@ app.get('/get',function (req, res) {
 	})
 })
 
+
+app.get('/sleep',function (req, res) {
+	const interval = req.query.interval || 100
+	setTimeout(function () {
+			res.json({
+				code: 0,
+				msg: '模拟延时接口：' + interval + 'ms',
+				data: req.query
+			})
+	}, interval)
+	
+})
+
 app.get('/external/getadvert',function (req, res) {
 	res.json({
     code: 0,
