@@ -150,6 +150,7 @@ app.get('/external/getadvert',function (req, res) {
 
 // post 测试，直接返回传过来的数据
 app.post('/post',function (req, res) {
+	console.log("POST测试数据", req.body)
   const data = {
     msg: '提交成功',
     code: 1,
